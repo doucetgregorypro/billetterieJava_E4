@@ -39,6 +39,7 @@ public class CtrlPrincipal {
                 break;
             case MENU_CONNEXION_DISTANTE: // Active la vue pour se connecter à la base distante
                 connexionDistanteAfficher();
+                break;
             case MENU_REPRESENTATION_AFFICHER: // activation de vueRepresentation depuis vueMenu
                 representationAfficher();
                 break;
@@ -47,8 +48,10 @@ public class CtrlPrincipal {
                 break;
             case VENTES_QUITTER:
                 venteQuitter();
+                break;
             case CONNEXION_DISTANTE_QUITTER: // Active la vue pour se connecter à la base distante
                 connexionDistanteQuitter();
+                break;
             case MENU_QUITTER: // fin de l'application depuis le menu principal
                 menuFichierQuitter();
                 break;
@@ -93,8 +96,9 @@ public class CtrlPrincipal {
         if (ctrlMenuPrincipal == null) {
             ctrlMenuPrincipal = new CtrlMenuPrincipal(this);
         }
-        ctrlAuthentificationLocale.getVue().setEnabled(false);
-        ctrlAuthentificationLocale.getVue().setVisible(false);
+        ctrlAuthentificationLocale.getVue().dispose();
+        //ctrlAuthentificationLocale.getVue().setEnabled(false);
+        //ctrlAuthentificationLocale.getVue().setVisible(false);
         ctrlMenuPrincipal.getVue().setEnabled(true);
         ctrlMenuPrincipal.getVue().setVisible(true);
     }
@@ -108,8 +112,9 @@ public class CtrlPrincipal {
         if (ctrlMenuPrincipal == null) {
             ctrlMenuPrincipal = new CtrlMenuPrincipal(this);
         }
-        ctrlConnexionDistante.getVue().setEnabled(false);
-        ctrlConnexionDistante.getVue().setVisible(false);
+        ctrlConnexionDistante.getVue().dispose();
+        //ctrlConnexionDistante.getVue().setEnabled(false);
+        //ctrlConnexionDistante.getVue().setVisible(false);
         ctrlMenuPrincipal.getVue().setEnabled(true);
     }
     
@@ -137,7 +142,6 @@ public class CtrlPrincipal {
             ctrlRepresentation = new CtrlRepresentation(this);
         }
         ctrlMenuPrincipal.getVue().setEnabled(false);
-        ctrlMenuPrincipal.getVue().setVisible(false);
         ctrlRepresentation.getVue().setVisible(true);
         ctrlRepresentation.getVue().setEnabled(true);
     }
@@ -151,8 +155,9 @@ public class CtrlPrincipal {
         if (ctrlVentePlace == null) {
             ctrlVentePlace = new CtrlVentePlace(this, idRepresentationSelect);
         }
+        //ctrlRepresentation.getVue().dispose();
         ctrlRepresentation.getVue().setEnabled(false);
-        ctrlRepresentation.getVue().setVisible(false);
+        //ctrlRepresentation.getVue().setVisible(false);
         ctrlVentePlace.getVue().setVisible(true);
         ctrlVentePlace.getVue().setEnabled(true);
     }
@@ -163,12 +168,14 @@ public class CtrlPrincipal {
      * @throws SQLException
      */
     private void representationQuitter() {
-        if (ctrlMenuPrincipal == null) 
-            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);       
-        ctrlRepresentation.getVue().setVisible(false);
-        ctrlRepresentation.getVue().setEnabled(false);
+        if (ctrlMenuPrincipal == null) {
+            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);
+        }
+        ctrlRepresentation.getVue().dispose();
+        //ctrlRepresentation = null;
+        //ctrlRepresentation.getVue().setVisible(false);
+        //ctrlRepresentation.getVue().setEnabled(false);
         ctrlMenuPrincipal.getVue().setEnabled(true);
-        ctrlMenuPrincipal.getVue().setVisible(true);
     }
     
     /**
@@ -177,12 +184,13 @@ public class CtrlPrincipal {
      * @throws SQLException
      */
     private void venteQuitter() throws SQLException {
-        if (ctrlRepresentation == null) 
-            ctrlRepresentation = new CtrlRepresentation(this);       
-        ctrlRepresentation.getVue().setVisible(true);
+        //ctrlRepresentation = null;
+        ctrlVentePlace.getVue().dispose();
+        ctrlVentePlace = null;
+        //ctrlRepresentation.getVue().setVisible(true);
         ctrlRepresentation.getVue().setEnabled(true);
-        ctrlVentePlace.getVue().setEnabled(false);
-        ctrlVentePlace.getVue().setVisible(false);
+        //ctrlVentePlace.getVue().setEnabled(false);
+        //ctrlVentePlace.getVue().setVisible(false);
     }
     
     /**
@@ -190,11 +198,13 @@ public class CtrlPrincipal {
      * @throws SQLException 
      */
     private void connexionDistanteQuitter() throws SQLException {
-        if (ctrlMenuPrincipal == null) 
-            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);       
-        ctrlMenuPrincipal.getVue().setVisible(true);
+        if (ctrlMenuPrincipal == null) {
+            ctrlMenuPrincipal = new CtrlMenuPrincipal(this);
+        }
+        ctrlConnexionDistante.getVue().dispose();
+        //ctrlMenuPrincipal.getVue().setVisible(true);
         ctrlMenuPrincipal.getVue().setEnabled(true);
-        ctrlConnexionDistante.getVue().setEnabled(false);
-        ctrlConnexionDistante.getVue().setVisible(false);
+        //ctrlConnexionDistante.getVue().setEnabled(false);
+        //ctrlConnexionDistante.getVue().setVisible(false);
     }
 }
